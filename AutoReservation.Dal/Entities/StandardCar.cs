@@ -1,4 +1,4 @@
-﻿namespace AutoReservation.Dal.Entities
+﻿namespace CarReservation.Dal.Entities
 {
     public class MidRangeCar : Car
     {

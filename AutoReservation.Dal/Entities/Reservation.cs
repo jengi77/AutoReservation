@@ -2,16 +2,16 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AutoReservation.Dal.Entities
+namespace CarReservation.Dal.Entities
 {
     public class Reservation
     {
         [Key]
-        public int Id { get; set; }
-        [ForeignKey()]
-        public int CarId { get; set; }
-        [ForeignKey()]
-        public int CustomerId { get; set; }
+        public Guid Id { get; set; }
+        [ForeignKey("Id"), InverseProperty("Reservations")]
+        public Car Car { get; set; }
+        [ForeignKey("Id"), InverseProperty("Reservations")]
+        public Customer Customer { get; set; }
         [DataType(DataType.Date)]
         public DateTime From { get; set; }
         [DataType(DataType.Date)]

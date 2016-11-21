@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AutoReservation.Dal.Entities
+namespace CarReservation.Dal.Entities
 {
     public class LuxuryCar : Car
     {

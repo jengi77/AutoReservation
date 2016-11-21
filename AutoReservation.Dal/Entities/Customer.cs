@@ -1,12 +1,15 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AutoReservation.Dal.Entities
+namespace CarReservation.Dal.Entities
 {
     public class Customer
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required, StringLength(20)]
         public string Lastname { get; set; }
         [Required, StringLength(20)]
@@ -15,5 +18,7 @@ namespace AutoReservation.Dal.Entities
         public DateTime Birthday { get; set; }
         [Required, Timestamp]
         public byte[] RowVersion { get; set; }
+        [InverseProperty("Customers")]
+        public ICollection<Reservation> Reservations { get; set; }
     }
 }
