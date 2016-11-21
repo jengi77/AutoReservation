@@ -1,8 +1,8 @@
-﻿using AutoReservation.Common.Interfaces;
+﻿using CarReservation.Common.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ServiceModel;
 
-namespace AutoReservation.Service.Wcf.Testing
+namespace CarReservation.Service.Wcf.Testing
 {
     [TestClass]
     public class ServiceTestRemote : ServiceTestBase

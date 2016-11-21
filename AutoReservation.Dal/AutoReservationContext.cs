@@ -1,8 +1,8 @@
-﻿using AutoReservation.Dal.Entities;
-using AutoReservation.Dal.Migrations;
+﻿using CarReservation.Dal.Entities;
+using CarReservation.Dal.Migrations;
 using System.Data.Entity;
 
-namespace AutoReservation.Dal
+namespace CarReservation.Dal
 {
     public class AutoReservationContext : DbContext
     {

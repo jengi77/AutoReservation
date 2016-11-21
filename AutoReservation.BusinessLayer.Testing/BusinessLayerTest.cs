@@ -1,22 +1,22 @@
-﻿using AutoReservation.Dal.Entities;
-using AutoReservation.TestEnvironment;
+﻿using CarReservation.Dal.Entities;
+using CarReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace AutoReservation.BusinessLayer.Testing
+namespace CarReservation.BusinessLayer.Testing
 {
     [TestClass]
     public class BusinessLayerTest
     {
 
-        private AutoReservationBusinessComponent target;
-        private AutoReservationBusinessComponent Target
+        private CarReservationBusinessComponent target;
+        private CarReservationBusinessComponent Target
         {
             get
             {
                 if (target == null)
                 {
-                    target = new AutoReservationBusinessComponent();
+                    target = new CarReservationBusinessComponent();
                 }
                 return target;
             }

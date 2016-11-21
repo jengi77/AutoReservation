@@ -1,6 +1,6 @@
-﻿using AutoReservation.Common.DataTransferObjects.Core;
+﻿using CarReservation.Common.DataTransferObjects.Core;
 
-namespace AutoReservation.Common.DataTransferObjects
+namespace CarReservation.Common.DataTransferObjects
 {
     public class KundeDto //: DtoBase<KundeDto>
     {

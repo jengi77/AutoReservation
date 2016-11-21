@@ -1,12 +1,12 @@
-﻿using AutoReservation.Common.DataTransferObjects;
-using AutoReservation.Common.Interfaces;
-using AutoReservation.TestEnvironment;
+﻿using CarReservation.Common.DataTransferObjects;
+using CarReservation.Common.Interfaces;
+using CarReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace AutoReservation.Service.Wcf.Testing
+namespace CarReservation.Service.Wcf.Testing
 {
     [TestClass]
     public abstract class ServiceTestBase

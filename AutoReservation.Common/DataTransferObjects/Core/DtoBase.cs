@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace AutoReservation.Common.DataTransferObjects.Core
+namespace CarReservation.Common.DataTransferObjects.Core
 {
     [DataContract]
     public abstract class DtoBase<T> : INotifyPropertyChanged, IValidatable

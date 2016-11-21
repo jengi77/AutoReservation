@@ -1,6 +1,6 @@
-﻿using AutoReservation.Common.DataTransferObjects;
+﻿using CarReservation.Common.DataTransferObjects;
 
-namespace AutoReservation.Common.Interfaces
+namespace CarReservation.Common.Interfaces
 {
     public interface IAutoReservationService
     {

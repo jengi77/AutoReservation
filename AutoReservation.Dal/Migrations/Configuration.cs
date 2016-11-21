@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 
-namespace AutoReservation.Dal.Migrations
+namespace CarReservation.Dal.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<AutoReservationContext>
     {

@@ -1,11 +1,11 @@
-﻿using AutoReservation.TestEnvironment;
-using AutoReservation.Ui.Factory;
-using AutoReservation.Ui.ViewModels;
+﻿using CarReservation.TestEnvironment;
+using CarReservation.Ui.Factory;
+using CarReservation.Ui.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System.Windows.Input;
 
-namespace AutoReservation.Ui.Testing
+namespace CarReservation.Ui.Testing
 {
     [TestClass]
     public class ViewModelTest

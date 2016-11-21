@@ -1,4 +1,4 @@
-﻿namespace AutoReservation.Common.DataTransferObjects.Core
+﻿namespace CarReservation.Common.DataTransferObjects.Core
 {
     public interface IValidatable
     {

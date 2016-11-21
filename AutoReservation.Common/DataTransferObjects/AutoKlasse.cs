@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace AutoReservation.Common.DataTransferObjects
+namespace CarReservation.Common.DataTransferObjects
 {
     [DataContract]
     public enum AutoKlasse

@@ -1,5 +1,5 @@
-﻿using AutoReservation.Dal;
-using AutoReservation.Dal.Entities;
+﻿using CarReservation.Dal;
+using CarReservation.Dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
-namespace AutoReservation.TestEnvironment
+namespace CarReservation.TestEnvironment
 {
     public static class TestEnvironmentHelper
     {
