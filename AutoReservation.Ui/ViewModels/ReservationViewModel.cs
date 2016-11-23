@@ -1,11 +1,11 @@
-﻿using AutoReservation.Common.DataTransferObjects;
-using AutoReservation.Ui.Factory;
+﻿using CarReservation.Common.DataTransferObjects;
+using CarReservation.Ui.Factory;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
-namespace AutoReservation.Ui.ViewModels
+namespace CarReservation.Ui.ViewModels
 {
     public class ReservationViewModel : ViewModelBase
     {
@@ -30,62 +30,62 @@ namespace AutoReservation.Ui.ViewModels
                 if (selectedReservation != value)
                 {
                     selectedReservation = value;
-                    SelectedAutoId = value?.Auto != null ? value.Auto.Id : 0;
-                    SelectedKundeId = value?.Kunde != null ? value.Kunde.Id : 0;
+                    SelectedCarId = value?.Car != null ? value.Car.Id : 0;
+                    SelectedCustomerId = value?.Customer != null ? value.Customer.Id : 0;
 
                     OnPropertyChanged(nameof(SelectedReservation));
                 }
             }
         }
 
-        private int selectedAutoId;
-        public int SelectedAutoId
+        private int selectedCarId;
+        public int SelectedCarId
         {
-            get { return selectedAutoId; }
+            get { return selectedCarId; }
             set
             {
-                if (selectedAutoId != value)
+                if (selectedCarId != value)
                 {
-                    selectedAutoId = value;
+                    selectedCarId = value;
                     if (SelectedReservation != null)
                     {
-                        SelectedReservation.Auto = Autos.SingleOrDefault(a => a.Id == value);
+                        SelectedReservation.Car = Cars.SingleOrDefault(a => a.Id == value);
                     }
 
-                    OnPropertyChanged(nameof(SelectedAutoId));
+                    OnPropertyChanged(nameof(SelectedCarId));
                 }
             }
         }
 
-        private int selectedKundeId;
-        public int SelectedKundeId
+        private int selectedCustomerId;
+        public int SelectedCustomerId
         {
-            get { return selectedKundeId; }
+            get { return selectedCustomerId; }
             set
             {
-                if (selectedKundeId != value)
+                if (selectedCustomerId != value)
                 {
-                    selectedKundeId = value;
+                    selectedCustomerId = value;
                     if (SelectedReservation != null)
                     {
-                        SelectedReservation.Kunde = Kunden.SingleOrDefault(k => k.Id == value);
+                        SelectedReservation.Customer = Customers.SingleOrDefault(k => k.Id == value);
                     }
 
-                    OnPropertyChanged(nameof(SelectedKundeId));
+                    OnPropertyChanged(nameof(SelectedCustomerId));
                 }
             }
         }
 
-        private readonly ObservableCollection<AutoDto> autos = new ObservableCollection<AutoDto>();
-        public ObservableCollection<AutoDto> Autos
+        private readonly ObservableCollection<CarDto> cars = new ObservableCollection<CarDto>();
+        public ObservableCollection<CarDto> Cars
         {
-            get { return autos; }
+            get { return cars; }
         }
 
-        private readonly ObservableCollection<KundeDto> kunden = new ObservableCollection<KundeDto>();
-        public ObservableCollection<KundeDto> Kunden
+        private readonly ObservableCollection<CustomerDto> customers = new ObservableCollection<CustomerDto>();
+        public ObservableCollection<CustomerDto> Customers
         {
-            get { return kunden; }
+            get { return customers; }
         }
 
         #region Load-Command
@@ -104,18 +104,18 @@ namespace AutoReservation.Ui.ViewModels
         {
             Reservationen.Clear();
             
-            Kunden.Clear();
-            Autos.Clear();
+            Customers.Clear();
+            Cars.Clear();
 
-            foreach (KundeDto kunde in Service.Kunden)
+            foreach (CustomerDto Customer in Service.Customers)
             {
-                Kunden.Add(kunde);
+                Customers.Add(Customer);
             }
-            foreach (AutoDto auto in Service.Autos)
+            foreach (CarDto Car in Service.Cars)
             {
-                Autos.Add(auto);
+                Cars.Add(Car);
             }
-            foreach (ReservationDto reservation in Service.Reservationen)
+            foreach (ReservationDto reservation in Service.Reservations)
             {
                 Reservationen.Add(reservation);
             }
@@ -145,7 +145,7 @@ namespace AutoReservation.Ui.ViewModels
         {
             foreach (var reservation in Reservationen)
             {
-                if (reservation.ReservationsNr == default(int))
+                if (reservation.ReservationNo == default(int))
                 {
                     Service.InsertReservation(reservation);
                 }
@@ -185,8 +185,8 @@ namespace AutoReservation.Ui.ViewModels
         {
             Reservationen.Add(new ReservationDto
             {
-                Von = DateTime.Today,
-                Bis = DateTime.Today
+                From = DateTime.Today,
+                To = DateTime.Today
             });
         }
 
@@ -220,7 +220,7 @@ namespace AutoReservation.Ui.ViewModels
             return
                 ServiceExists &&
                 SelectedReservation != null &&
-                SelectedReservation.ReservationsNr != default(int);
+                SelectedReservation.ReservationNo != default(int);
         }
 
         #endregion

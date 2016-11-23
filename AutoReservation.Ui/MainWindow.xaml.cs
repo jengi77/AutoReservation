@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using AutoReservation.Ui.ViewModels;
 
-namespace AutoReservation.Ui
+namespace CarReservation.Ui
 {
     public partial class MainWindow : Window
     {

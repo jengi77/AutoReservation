@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutoReservation.BusinessLayer
+namespace CarReservation.BusinessLayer
 {
     public class LocalOptimisticConcurrencyException<T> : Exception
     {

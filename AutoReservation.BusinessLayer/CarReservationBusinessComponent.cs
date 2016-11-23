@@ -1,17 +1,12 @@
-﻿using AutoReservation.Dal;
-using AutoReservation.Dal.Entities;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
+﻿using CarReservation.Dal;
+using CarReservation.Dal.Entities;
+using CarReservation.BusinessLayer;
 
-namespace AutoReservation.BusinessLayer
+namespace CarReservation.BusinessLayer
 {
     public class CarReservationBusinessComponent
     {
- 
-
-        private static LocalOptimisticConcurrencyException<T> CreateLocalOptimisticConcurrencyException<T>(AutoReservationContext context, T entity)
+        private static LocalOptimisticConcurrencyException<T> CreateLocalOptimisticConcurrencyException<T>(CarReservationContext context, T entity)
             where T : class
         {
             var dbEntity = (T)context.Entry(entity)

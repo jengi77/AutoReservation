@@ -7,14 +7,14 @@ namespace CarReservation.Service.Wcf.Testing
     public class ServiceTestLocal : ServiceTestBase
     {
 
-        private IAutoReservationService target;
-        protected override IAutoReservationService Target
+        private ICarReservationService target;
+        protected override ICarReservationService Target
         {
             get
             {
                 if (target == null)
                 {
-                    target = new AutoReservationService();
+                    target = new CarReservationService();
                 }
                 return target;
             }

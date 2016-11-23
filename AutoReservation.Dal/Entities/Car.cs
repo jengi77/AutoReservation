@@ -8,9 +8,9 @@ namespace CarReservation.Dal.Entities
     public abstract class Car
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required, StringLength(20)]
-        public string Marque { get; set; }
+        public string Brand { get; set; }
         [Required]
         public int DailyRate { get; set; }
         [Required, Timestamp]

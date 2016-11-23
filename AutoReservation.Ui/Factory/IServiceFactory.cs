@@ -1,9 +1,9 @@
-using AutoReservation.Common.Interfaces;
+using CarReservation.Common.Interfaces;
 
-namespace AutoReservation.Ui.Factory
+namespace CarReservation.Ui.Factory
 {
     public interface IServiceFactory
     {
-        IAutoReservationService GetService();
+        ICarReservationService GetService();
     }
 }

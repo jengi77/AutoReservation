@@ -9,7 +9,7 @@ namespace CarReservation.Dal.Entities
     public class Customer
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required, StringLength(20)]
         public string Lastname { get; set; }
         [Required, StringLength(20)]

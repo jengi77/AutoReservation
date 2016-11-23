@@ -3,11 +3,11 @@
 namespace CarReservation.Ui.Views
 {
     /// <summary>
-    /// Interaction logic for ReservationView.xaml
+    /// Interaction logic for CustomerView.xaml
     /// </summary>
-    public partial class ReservationView : UserControl
+    public partial class CustomerView : UserControl
     {
-        public ReservationView()
+        public CustomerView()
         {
             InitializeComponent();
         }

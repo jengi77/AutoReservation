@@ -1,9 +1,8 @@
-﻿using AutoReservation.Common.DataTransferObjects;
-using AutoReservation.Dal.Entities;
+﻿using CarReservation.Common.DataTransferObjects;
+using CarReservation.Dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CarReservation.Dal.Entities;
 
 namespace CarReservation.Service.Wcf
 {
@@ -12,9 +11,9 @@ namespace CarReservation.Service.Wcf
         #region Car
         private static Car GetCarInstance(CarDto dto)
         {
-            if (dto.CarKlasse == CarClass.Standard) { return new StandardCar(); }
-            if (dto.CarKlasse == CarClass.Mittelklasse) { return new MittelklasseCar(); }
-            if (dto.CarKlasse == CarClass.Luxusklasse) { return new LuxusklasseCar(); }
+            if (dto.CarClass == CarClass.Standard) { return new StandardCar(); }
+            if (dto.CarClass == CarClass.MidRange) { return new MidRangeCar(); }
+            if (dto.CarClass == CarClass.Luxury) { return new LuxuryCar(); }
             throw new ArgumentException("Unknown CarDto implementation.", nameof(dto));
         }
         public static Car ConvertToEntity(this CarDto dto)
@@ -23,13 +22,13 @@ namespace CarReservation.Service.Wcf
 
             Car Car = GetCarInstance(dto);
             Car.Id = dto.Id;
-            Car.Marke = dto.Marke;
-            Car.Tagestarif = dto.Tagestarif;
+            Car.Brand = dto.Brand;
+            Car.DailyRate = dto.DailyRate;
             Car.RowVersion = dto.RowVersion;
 
-            if (Car is LuxusklasseCar)
+            if (Car is LuxuryCar)
             {
-                ((LuxusklasseCar)Car).Basistarif = dto.Basistarif;
+                ((LuxuryCar)Car).BaseRate = dto.BaseRate;
             }
             return Car;
         }
@@ -40,17 +39,17 @@ namespace CarReservation.Service.Wcf
             CarDto dto = new CarDto
             {
                 Id = entity.Id,
-                Marke = entity.Marke,
-                Tagestarif = entity.Tagestarif,
+                Brand = entity.Brand,
+                DailyRate = entity.DailyRate,
                 RowVersion = entity.RowVersion
             };
 
-            if (entity is StandardCar) { dto.CarKlasse = CarKlasse.Standard; }
-            if (entity is MittelklasseCar) { dto.CarKlasse = CarKlasse.Mittelklasse; }
-            if (entity is LuxusklasseCar)
+            if (entity is StandardCar) { dto.CarClass = CarClass.Standard; }
+            if (entity is MidRangeCar) { dto.CarClass = CarClass.MidRange; }
+            if (entity is LuxuryCar)
             {
-                dto.CarKlasse = CarKlasse.Luxusklasse;
-                dto.Basistarif = ((LuxusklasseCar)entity).Basistarif;
+                dto.CarClass = CarClass.Luxury;
+                dto.BaseRate = ((LuxuryCar)entity).BaseRate;
             }
 
 
@@ -65,38 +64,38 @@ namespace CarReservation.Service.Wcf
             return ConvertGenericList(entities, ConvertToDto);
         }
         #endregion
-        #region Kunde
-        public static Kunde ConvertToEntity(this KundeDto dto)
+        #region Customer
+        public static Customer ConvertToEntity(this CustomerDto dto)
         {
             if (dto == null) { return null; }
 
-            return new Kunde
+            return new Customer()
             {
                 Id = dto.Id,
-                Nachname = dto.Nachname,
-                Vorname = dto.Vorname,
-                Geburtsdatum = dto.Geburtsdatum,
+                Lastname = dto.Lastname,
+                Firstname = dto.Firstname,
+                Birthday = dto.Birthday,
                 RowVersion = dto.RowVersion
             };
         }
-        public static KundeDto ConvertToDto(this Kunde entity)
+        public static CustomerDto ConvertToDto(this Customer entity)
         {
             if (entity == null) { return null; }
 
-            return new KundeDto
+            return new CustomerDto
             {
                 Id = entity.Id,
-                Nachname = entity.Nachname,
-                Vorname = entity.Vorname,
-                Geburtsdatum = entity.Geburtsdatum,
+                Lastname = entity.Lastname,
+                Firstname = entity.Firstname,
+                Birthday = entity.Birthday,
                 RowVersion = entity.RowVersion
             };
         }
-        public static List<Kunde> ConvertToEntities(this IEnumerable<KundeDto> dtos)
+        public static List<Customer> ConvertToEntities(this IEnumerable<CustomerDto> dtos)
         {
             return ConvertGenericList(dtos, ConvertToEntity);
         }
-        public static List<KundeDto> ConvertToDtos(this IEnumerable<Kunde> entities)
+        public static List<CustomerDto> ConvertToDtos(this IEnumerable<Customer> entities)
         {
             return ConvertGenericList(entities, ConvertToDto);
         }
@@ -108,11 +107,11 @@ namespace CarReservation.Service.Wcf
 
             Reservation reservation = new Reservation
             {
-                ReservationsNr = dto.ReservationsNr,
-                Von = dto.Von,
-                Bis = dto.Bis,
-                CarId = dto.Car.Id,
-                KundeId = dto.Kunde.Id,
+                ReservationNo = dto.ReservationNo,
+                From = dto.From,
+                To = dto.To,
+                Car = ConvertToEntity(dto.Car),
+                Customer = ConvertToEntity(dto.Customer),
                 RowVersion = dto.RowVersion
             };
 
@@ -124,12 +123,12 @@ namespace CarReservation.Service.Wcf
 
             return new ReservationDto
             {
-                ReservationsNr = entity.ReservationsNr,
-                Von = entity.Von,
-                Bis = entity.Bis,
+                ReservationNo = entity.ReservationNo,
+                From = entity.From,
+                To = entity.To,
                 RowVersion = entity.RowVersion,
                 Car = ConvertToDto(entity.Car),
-                Kunde = ConvertToDto(entity.Kunde)
+                Customer = ConvertToDto(entity.Customer)
             };
         }
         public static List<Reservation> ConvertToEntities(this IEnumerable<ReservationDto> dtos)

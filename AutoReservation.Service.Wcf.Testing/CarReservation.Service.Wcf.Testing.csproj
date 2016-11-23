@@ -8,8 +8,8 @@
     <ProjectGuid>{943E927C-BFCD-4DD6-8DD3-AECCF5F7BC4B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoReservation.Service.Wcf.Testing</RootNamespace>
-    <AssemblyName>AutoReservation.Service.Wcf.Testing</AssemblyName>
+    <RootNamespace>CarReservation.Service.Wcf.Testing</RootNamespace>
+    <AssemblyName>CarReservation.Service.Wcf.Testing</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

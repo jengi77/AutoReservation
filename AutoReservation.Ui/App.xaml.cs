@@ -1,8 +1,9 @@
-﻿using AutoReservation.Ui.ViewModels;
+﻿using CarReservation.Ui.ViewModels;
 using Ninject;
 using System.Windows;
+using CarReservation.Ui;
 
-namespace AutoReservation.Ui
+namespace CarReservation.Ui
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -25,8 +26,8 @@ namespace AutoReservation.Ui
 
         private IKernel LoadNinject()
         {
-            var kernel = new StandardKernel(new AutoReservationModule());
-            kernel.Load("AutoReservation.Ui.Factory.NinjectBindings.xml");
+            var kernel = new StandardKernel(new CarReservationModule());
+            kernel.Load("CarReservation.Ui.Factory.NinjectBindings.xml");
             return kernel;
         }
 

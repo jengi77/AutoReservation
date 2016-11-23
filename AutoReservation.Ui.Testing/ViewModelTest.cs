@@ -22,9 +22,9 @@ namespace CarReservation.Ui.Testing
         }
         
         [TestMethod]
-        public void AutosLoadTest()
+        public void CarsLoadTest()
         {
-            AutoViewModel vm = new AutoViewModel(kernel.Get<IServiceFactory>());
+            CarViewModel vm = new CarViewModel(kernel.Get<IServiceFactory>());
             vm.Init();
 
             ICommand targetCommand = vm.LoadCommand;
@@ -33,13 +33,13 @@ namespace CarReservation.Ui.Testing
 
             targetCommand.Execute(null);
 
-            Assert.AreEqual(3, vm.Autos.Count);
+            Assert.AreEqual(3, vm.Cars.Count);
         }
 
         [TestMethod]
-        public void KundenLoadTest()
+        public void CustomersLoadTest()
         {
-            KundeViewModel vm = new KundeViewModel(kernel.Get<IServiceFactory>());
+            CustomerViewModel vm = new CustomerViewModel(kernel.Get<IServiceFactory>());
             vm.Init();
 
             ICommand targetCommand = vm.LoadCommand;
@@ -48,7 +48,7 @@ namespace CarReservation.Ui.Testing
 
             targetCommand.Execute(null);
 
-            Assert.AreEqual(4, vm.Kunden.Count);
+            Assert.AreEqual(4, vm.Customers.Count);
         }
 
         [TestMethod]

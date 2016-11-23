@@ -8,8 +8,8 @@
     <ProjectGuid>{1F53D0EF-0521-4155-835C-C2A04D9FE5DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoReservation.BusinessLayer</RootNamespace>
-    <AssemblyName>AutoReservation.BusinessLayer</AssemblyName>
+    <RootNamespace>CarReservation.BusinessLayer</RootNamespace>
+    <AssemblyName>CarReservation.BusinessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -83,7 +83,7 @@
     <None Include="..\..\Assets\AutoReservation.StrongNameKey.snk">
       <Link>..\Assets\AutoReservation.StrongNameKey.snk</Link>
     </None>
-    <None Include="AutoReservationBusinessComponent.cd" />
+    <None Include="CarReservationBusinessComponent.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,36 +1,37 @@
-﻿using AutoReservation.Common.DataTransferObjects;
-using AutoReservation.Ui.Factory;
+﻿using CarReservation.Common.DataTransferObjects;
+using CarReservation.Ui.Factory;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using CarReservation.Ui.ViewModels;
 
-namespace AutoReservation.Ui.ViewModels
+namespace CarReservation.Ui.ViewModels
 {
-    public class KundeViewModel : ViewModelBase
+    public class CustomerViewModel : ViewModelBase
     {
-        private readonly ObservableCollection<KundeDto> kunden = new ObservableCollection<KundeDto>();
+        private readonly ObservableCollection<CustomerDto> customers = new ObservableCollection<CustomerDto>();
 
-        public KundeViewModel(IServiceFactory factory) : base(factory)
+        public CustomerViewModel(IServiceFactory factory) : base(factory)
         {
             
         }
 
-        public ObservableCollection<KundeDto> Kunden
+        public ObservableCollection<CustomerDto> Customers
         {
-            get { return kunden; }
+            get { return customers; }
         }
 
-        private KundeDto selectedKunde;
-        public KundeDto SelectedKunde
+        private CustomerDto selectedCustomer;
+        public CustomerDto SelectedCustomer
         {
-            get { return selectedKunde; }
+            get { return selectedCustomer; }
             set
             {
-                if (selectedKunde != value)
+                if (selectedCustomer != value)
                 {
-                    selectedKunde = value;
-                    OnPropertyChanged(nameof(SelectedKunde));
+                    selectedCustomer = value;
+                    OnPropertyChanged(nameof(SelectedCustomer));
                 }
             }
         }
@@ -50,12 +51,12 @@ namespace AutoReservation.Ui.ViewModels
 
         protected override void Load()
         {
-            Kunden.Clear();
-            foreach (var kunde in Service.Kunden)
+            Customers.Clear();
+            foreach (var Customer in Service.Customers)
             {
-                Kunden.Add(kunde);
+                Customers.Add(Customer);
             }
-            SelectedKunde = Kunden.FirstOrDefault();
+            SelectedCustomer = Customers.FirstOrDefault();
         }
 
         private bool CanLoad()
@@ -79,15 +80,15 @@ namespace AutoReservation.Ui.ViewModels
 
         private void SaveData()
         {
-            foreach (var kunde in Kunden)
+            foreach (var Customer in Customers)
             {
-                if (kunde.Id == default(int))
+                if (Customer.Id == default(int))
                 {
-                    Service.InsertKunde(kunde);
+                    Service.InsertCustomer(Customer);
                 }
                 else
                 {
-                    Service.UpdateKunde(kunde);
+                    Service.UpdateCustomer(Customer);
                 }
             }
             Load();
@@ -100,7 +101,7 @@ namespace AutoReservation.Ui.ViewModels
                 return false;
             }
 
-            return Validate(Kunden);
+            return Validate(Customers);
         }
 
 
@@ -120,7 +121,7 @@ namespace AutoReservation.Ui.ViewModels
 
         private void New()
         {
-            Kunden.Add(new KundeDto { Geburtsdatum = DateTime.Today });
+            Customers.Add(new CustomerDto { Birthday = DateTime.Today });
         }
 
         private bool CanNew()
@@ -144,7 +145,7 @@ namespace AutoReservation.Ui.ViewModels
 
         private void Delete()
         {
-            Service.DeleteKunde(SelectedKunde);
+            Service.DeleteCustomer(SelectedCustomer);
             Load();
         }
 
@@ -152,8 +153,8 @@ namespace AutoReservation.Ui.ViewModels
         {
             return
                 ServiceExists &&
-                SelectedKunde != null &&
-                SelectedKunde.Id != default(int);
+                SelectedCustomer != null &&
+                SelectedCustomer.Id != default(int);
         }
 
         #endregion

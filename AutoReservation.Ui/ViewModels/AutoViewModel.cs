@@ -1,35 +1,35 @@
-﻿using AutoReservation.Common.DataTransferObjects;
-using AutoReservation.Ui.Factory;
+﻿using CarReservation.Common.DataTransferObjects;
+using CarReservation.Ui.Factory;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
-namespace AutoReservation.Ui.ViewModels
+namespace CarReservation.Ui.ViewModels
 {
-    public class AutoViewModel : ViewModelBase
+    public class CarViewModel : ViewModelBase
     {
-        private readonly ObservableCollection<AutoDto> autos = new ObservableCollection<AutoDto>();
+        private readonly ObservableCollection<CarDto> cars = new ObservableCollection<CarDto>();
 
-        public AutoViewModel(IServiceFactory factory) : base(factory)
+        public CarViewModel(IServiceFactory factory) : base(factory)
         {
             
         }
 
-        public ObservableCollection<AutoDto> Autos
+        public ObservableCollection<CarDto> Cars
         {
-            get { return autos; }
+            get { return cars; }
         }
 
-        private AutoDto selectedAuto;
-        public AutoDto SelectedAuto
+        private CarDto selectedCar;
+        public CarDto SelectedCar
         {
-            get { return selectedAuto; }
+            get { return selectedCar; }
             set
             {
-                if (selectedAuto != value)
+                if (selectedCar != value)
                 {
-                    selectedAuto = value;
-                    OnPropertyChanged(nameof(SelectedAuto));
+                    selectedCar = value;
+                    OnPropertyChanged(nameof(SelectedCar));
                 }
             }
         }
@@ -48,12 +48,12 @@ namespace AutoReservation.Ui.ViewModels
 
         protected override void Load()
         {
-            Autos.Clear();
-            foreach (var auto in Service.Autos)
+            Cars.Clear();
+            foreach (var car in Service.Cars)
             {
-                Autos.Add(auto);
+                Cars.Add(car);
             }
-            SelectedAuto = Autos.FirstOrDefault();
+            SelectedCar = Cars.FirstOrDefault();
         }
 
         private bool CanLoad()
@@ -77,15 +77,15 @@ namespace AutoReservation.Ui.ViewModels
 
         private void SaveData()
         {
-            foreach (var auto in Autos)
+            foreach (var car in Cars)
             {
-                if (auto.Id == default(int))
+                if (car.Id == default(int))
                 {
-                    Service.InsertAuto(auto);
+                    Service.InsertCar(car);
                 }
                 else
                 {
-                    Service.UpdateAuto(auto);
+                    Service.UpdateCar(car);
                 }
             }
             Load();
@@ -98,7 +98,7 @@ namespace AutoReservation.Ui.ViewModels
                 return false;
             }
 
-            return Validate(Autos);
+            return Validate(Cars);
         }
 
         #endregion
@@ -117,7 +117,7 @@ namespace AutoReservation.Ui.ViewModels
 
         private void New()
         {
-            Autos.Add(new AutoDto());
+            Cars.Add(new CarDto());
         }
 
         private bool CanNew()
@@ -141,7 +141,7 @@ namespace AutoReservation.Ui.ViewModels
 
         private void Delete()
         {
-            Service.DeleteAuto(SelectedAuto);
+            Service.DeleteCar(SelectedCar);
             Load();
         }
 
@@ -149,8 +149,8 @@ namespace AutoReservation.Ui.ViewModels
         {
             return
                 ServiceExists &&
-                SelectedAuto != null &&
-                SelectedAuto.Id != default(int);
+                SelectedCar != null &&
+                SelectedCar.Id != default(int);
         }
 
         #endregion

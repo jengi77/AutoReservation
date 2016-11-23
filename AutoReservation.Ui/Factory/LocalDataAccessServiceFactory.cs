@@ -1,13 +1,13 @@
-﻿using AutoReservation.Common.Interfaces;
-using AutoReservation.Service.Wcf;
+﻿using CarReservation.Common.Interfaces;
+using CarReservation.Service.Wcf;
 
-namespace AutoReservation.Ui.Factory
+namespace CarReservation.Ui.Factory
 {
     public class LocalDataAccessServiceFactory : IServiceFactory
     {
-        public IAutoReservationService GetService()
+        public ICarReservationService GetService()
         {
-            return new AutoReservationService();
+            return new CarReservationService();
         }
     }
 }

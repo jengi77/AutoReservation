@@ -1,34 +1,34 @@
-﻿namespace AutoReservation.Ui.ViewModels
+﻿namespace CarReservation.Ui.ViewModels
 {
     public class MainWindowViewModel
     {
-        private readonly AutoViewModel autoViewModel;
-        private readonly KundeViewModel kundeViewModel;
+        private readonly CarViewModel carViewModel;
+        private readonly CustomerViewModel customerViewModel;
         private readonly ReservationViewModel reservationViewModel;
 
-        public MainWindowViewModel(AutoViewModel autoViewModel, KundeViewModel kundeViewModel,
+        public MainWindowViewModel(CarViewModel carViewModel, CustomerViewModel customerViewModel,
             ReservationViewModel reservationViewModel)
         {
-            this.autoViewModel = autoViewModel;
-            this.kundeViewModel = kundeViewModel;
+            this.carViewModel = carViewModel;
+            this.customerViewModel = customerViewModel;
             this.reservationViewModel = reservationViewModel;
         }
 
         public void Init()
         {
-            autoViewModel.Init();
-            kundeViewModel.Init();
+            carViewModel.Init();
+            customerViewModel.Init();
             reservationViewModel.Init();
         }
 
-        public AutoViewModel AutoViewModel
+        public CarViewModel CarViewModel
         {
-            get { return autoViewModel; }
+            get { return carViewModel; }
         }
 
-        public KundeViewModel KundeViewModel
+        public CustomerViewModel CustomerViewModel
         {
-            get { return kundeViewModel; }
+            get { return customerViewModel; }
         }
 
         public ReservationViewModel ReservationViewModel

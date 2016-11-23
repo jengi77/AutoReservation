@@ -11,7 +11,7 @@ namespace CarReservation.Service.Wcf.Testing
     [TestClass]
     public abstract class ServiceTestBase
     {
-        protected abstract IAutoReservationService Target { get; }
+        protected abstract ICarReservationService Target { get; }
 
         [TestInitialize]
         public void InitializeTestData()
@@ -22,13 +22,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Read all entities
 
         [TestMethod]
-        public void GetAutosTest()
+        public void GetCarsTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void GetKundenTest()
+        public void GetCutomersTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
@@ -44,13 +44,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Get by existing ID
 
         [TestMethod]
-        public void GetAutoByIdTest()
+        public void GetCarByIdTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void GetKundeByIdTest()
+        public void GetCustomerByIdTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
@@ -66,13 +66,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Get by not existing ID
 
         [TestMethod]
-        public void GetAutoByIdWithIllegalIdTest()
+        public void GetCarByIdWithIllegalIdTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void GetKundeByIdWithIllegalIdTest()
+        public void GetCustomerByIdWithIllegalIdTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
@@ -87,13 +87,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Insert
 
         [TestMethod]
-        public void InsertAutoTest()
+        public void InsertCarTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void InsertKundeTest()
+        public void InsertCustomerTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
@@ -109,13 +109,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Delete  
 
         [TestMethod]
-        public void DeleteAutoTest()
+        public void DeleteCarTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void DeleteKundeTest()
+        public void DeleteCustomerTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
@@ -131,13 +131,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Update
 
         [TestMethod]
-        public void UpdateAutoTest()
+        public void UpdateCarTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void UpdateKundeTest()
+        public void UpdateCustomerTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
@@ -153,13 +153,13 @@ namespace CarReservation.Service.Wcf.Testing
         #region Update with optimistic concurrency violation
 
         [TestMethod]
-        public void UpdateAutoWithOptimisticConcurrencyTest()
+        public void UpdateCarWithOptimisticConcurrencyTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }
 
         [TestMethod]
-        public void UpdateKundeWithOptimisticConcurrencyTest()
+        public void UpdateCustomerWithOptimisticConcurrencyTest()
         {
             Assert.Inconclusive("Test not implemented.");
         }

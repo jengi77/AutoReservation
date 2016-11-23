@@ -1,7 +1,6 @@
 ﻿using CarReservation.Dal.Entities;
 using CarReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace CarReservation.BusinessLayer.Testing
 {

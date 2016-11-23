@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="AutoReservation.Ui.Views.ReservationView"
+﻿<UserControl x:Class="CarReservation.Ui.Views.ReservationView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Converters="clr-namespace:AutoReservation.Ui.Converters">
+    xmlns:converters="clr-namespace:CarReservation.Ui.Converters">
     <UserControl.Resources>
-        <Converters:DetailViewVisibilityConverter x:Key="DetailViewVisibilityConverter" />
+        <converters:DetailViewVisibilityConverter x:Key="DetailViewVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,12 +32,12 @@
                       ItemsSource="{Binding Reservationen}" 
                       SelectedItem="{Binding SelectedReservation, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Reservations Nr." Binding="{Binding ReservationsNr}" />
-                    <DataGridTextColumn Header="Von" Binding="{Binding Von, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
-                    <DataGridTextColumn Header="Bis" Binding="{Binding Bis, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
-                    <DataGridTextColumn Header="Auto" Binding="{Binding Auto.Marke}" />
-                    <DataGridTextColumn Header="Nachname" Binding="{Binding Kunde.Nachname}" />
-                    <DataGridTextColumn Header="Vorname" Binding="{Binding Kunde.Vorname}" />
+                    <DataGridTextColumn Header="Reservations Nr." Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="From" Binding="{Binding From, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
+                    <DataGridTextColumn Header="To" Binding="{Binding To, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
+                    <DataGridTextColumn Header="Car" Binding="{Binding Car.Brand}" />
+                    <DataGridTextColumn Header="Lastname" Binding="{Binding Customer.Lastname}" />
+                    <DataGridTextColumn Header="Firstname" Binding="{Binding Customer.Firstname}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -84,17 +84,17 @@
                    FontSize="16" FontWeight="UltraBold" FontStyle="Italic">
                 Reservation Editieren
             </Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedReservation.ReservationsNr}" IsReadOnly="True" />
-            <DatePicker Grid.Column="1" Grid.Row="2" SelectedDate="{Binding SelectedReservation.Von}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
-            <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding SelectedReservation.Bis}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
-            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Autos}" SelectedValue="{Binding SelectedAutoId}" SelectedValuePath="Id" DisplayMemberPath="Marke" />
-            <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Kunden}" SelectedValue="{Binding SelectedKundeId}" SelectedValuePath="Id">
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedReservation.Id}" IsReadOnly="True" />
+            <DatePicker Grid.Column="1" Grid.Row="2" SelectedDate="{Binding SelectedReservation.From}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
+            <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding SelectedReservation.to}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
+            <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Cars}" SelectedValue="{Binding SelectedCarId}" SelectedValuePath="Id" DisplayMemberPath="Brand" />
+            <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Customers}" SelectedValue="{Binding SelectedCustomerId}" SelectedValuePath="Id">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Vorname}" />
+                            <TextBlock Text="{Binding Firstname}" />
                             <TextBlock Text=" " />
-                            <TextBlock Text="{Binding Nachname}" />
+                            <TextBlock Text="{Binding Lastname}" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

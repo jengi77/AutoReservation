@@ -1,12 +1,12 @@
-﻿using AutoReservation.Common.DataTransferObjects.Core;
-using AutoReservation.Common.Interfaces;
-using AutoReservation.Ui.Factory;
+﻿using CarReservation.Common.DataTransferObjects.Core;
+using CarReservation.Common.Interfaces;
+using CarReservation.Ui.Factory;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 
-namespace AutoReservation.Ui.ViewModels
+namespace CarReservation.Ui.ViewModels
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
@@ -19,7 +19,7 @@ namespace AutoReservation.Ui.ViewModels
             this.factory = factory;
         }
 
-        protected IAutoReservationService Service { get; private set; }
+        protected ICarReservationService Service { get; private set; }
 
         public bool ServiceExists => Service  != null;
 

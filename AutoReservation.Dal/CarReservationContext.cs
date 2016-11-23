@@ -1,12 +1,16 @@
-﻿using CarReservation.Dal.Entities;
+﻿using System.Collections.Generic;
+using CarReservation.Dal.Entities;
 using CarReservation.Dal.Migrations;
 using System.Data.Entity;
 
 namespace CarReservation.Dal
 {
-    public class AutoReservationContext : DbContext
+    public class CarReservationContext : DbContext
     {
-        public AutoReservationContext()
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public CarReservationContext()
         {
             // Ensures that the database will be initialized
             Database.Initialize(false);
@@ -30,12 +34,13 @@ namespace CarReservation.Dal
             // Use this for real "code first" 
             //      - Database will be created by Entity Framework
             //      - Database will be modified by Entity Framework
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AutoReservationContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<CarReservationContext, Configuration>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
 
             // Set up hierarchical mapping in fluent API
             //      Remarks:
@@ -44,3 +49,4 @@ namespace CarReservation.Dal
         }
     }
 }
+

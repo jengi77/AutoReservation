@@ -8,8 +8,8 @@
     <ProjectGuid>{73F6E950-15A9-460D-993B-DFE469A9E286}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoReservation.Service.Wcf</RootNamespace>
-    <AssemblyName>AutoReservation.Service.Wcf</AssemblyName>
+    <RootNamespace>CarReservation.Service.Wcf</RootNamespace>
+    <AssemblyName>CarReservation.Service.Wcf</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -75,7 +75,7 @@
     <Compile Include="..\Assets\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
-    <Compile Include="AutoReservationService.cs">
+    <Compile Include="CarReservationService.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DtoConverter.cs" />
@@ -88,7 +88,7 @@
     <None Include="..\..\Assets\AutoReservation.StrongNameKey.snk">
       <Link>..\Assets\AutoReservation.StrongNameKey.snk</Link>
     </None>
-    <None Include="AutoReservationService.cd" />
+    <None Include="CarReservationService.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

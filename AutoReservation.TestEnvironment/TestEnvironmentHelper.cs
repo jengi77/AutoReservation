@@ -14,13 +14,13 @@ namespace CarReservation.TestEnvironment
     {
         public static void InitializeTestData()
         {
-            using (AutoReservationContext context = new AutoReservationContext())
+            using (CarReservationContext context = new CarReservationContext())
             {
-                var luxusklasseAutoTableName = context.GetTableName<LuxusklasseAuto>();
-                var mittelklasseAutoTableName = context.GetTableName<MittelklasseAuto>();
-                var standardAutoTableName = context.GetTableName<StandardAuto>();
-                var autoTableName = context.GetTableName<Auto>();
-                var kundeTableName = context.GetTableName<Kunde>();
+                var luxuryCarTableName = context.GetTableName<LuxuryCar>();
+                var midRangeCarTableName = context.GetTableName<MidRangeCar>();
+                var standardCarTableName = context.GetTableName<StandardCar>();
+                var carTableName = context.GetTableName<Car>();
+                var customerTableName = context.GetTableName<Customer>();
                 var reservationTableName = context.GetTableName<Reservation>();
 
                 try
@@ -28,42 +28,42 @@ namespace CarReservation.TestEnvironment
                     // Delete all records from tables
                     //      > Cleanup for specific subtypes necessary when not using table per hierarchy (TPH)
                     //        since entities will be stored in different tables.
-                    if (luxusklasseAutoTableName != autoTableName)
+                    if (luxuryCarTableName != carTableName)
                     { 
-                        context.DeleteAllRecords(luxusklasseAutoTableName); 
+                        context.DeleteAllRecords(luxuryCarTableName); 
                     }
-                    if (mittelklasseAutoTableName != autoTableName)
+                    if (midRangeCarTableName != carTableName)
                     { 
-                        context.DeleteAllRecords(mittelklasseAutoTableName); 
+                        context.DeleteAllRecords(midRangeCarTableName); 
                     }
-                    if (standardAutoTableName != autoTableName)
+                    if (standardCarTableName != carTableName)
                     { 
-                        context.DeleteAllRecords(standardAutoTableName); 
+                        context.DeleteAllRecords(standardCarTableName); 
                     }
                     context.DeleteAllRecords(reservationTableName);
-                    context.DeleteAllRecords(autoTableName);
-                    context.DeleteAllRecords(kundeTableName);
+                    context.DeleteAllRecords(carTableName);
+                    context.DeleteAllRecords(customerTableName);
 
                     // Reset the identity seed (Id's will start again from 1)
-                    context.ResetEntitySeed(luxusklasseAutoTableName);
-                    context.ResetEntitySeed(mittelklasseAutoTableName);
-                    context.ResetEntitySeed(standardAutoTableName);
-                    context.ResetEntitySeed(autoTableName);
-                    context.ResetEntitySeed(kundeTableName);
+                    context.ResetEntitySeed(luxuryCarTableName);
+                    context.ResetEntitySeed(midRangeCarTableName);
+                    context.ResetEntitySeed(standardCarTableName);
+                    context.ResetEntitySeed(carTableName);
+                    context.ResetEntitySeed(customerTableName);
                     context.ResetEntitySeed(reservationTableName);
 
                     // Temporarily allow insertion of identity columns (Id)
-                    context.SetAutoIncrementOnTable(luxusklasseAutoTableName, true);
-                    context.SetAutoIncrementOnTable(mittelklasseAutoTableName, true);
-                    context.SetAutoIncrementOnTable(standardAutoTableName, true);
-                    context.SetAutoIncrementOnTable(autoTableName, true);
-                    context.SetAutoIncrementOnTable(kundeTableName, true);
+                    context.SetAutoIncrementOnTable(luxuryCarTableName, true);
+                    context.SetAutoIncrementOnTable(midRangeCarTableName, true);
+                    context.SetAutoIncrementOnTable(standardCarTableName, true);
+                    context.SetAutoIncrementOnTable(carTableName, true);
+                    context.SetAutoIncrementOnTable(customerTableName, true);
                     context.SetAutoIncrementOnTable(reservationTableName, true);
 
                     // Insert test data
-                    context.Autos.AddRange(Autos);
-                    context.Kunden.AddRange(Kunden);
-                    context.Reservationen.AddRange(Reservationen);
+                    context.Cars.AddRange(Cars);
+                    context.Customers.AddRange(Customers);
+                    context.Reservations.AddRange(Reservations);
                     context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -73,39 +73,39 @@ namespace CarReservation.TestEnvironment
                 finally
                 {
                     // Disable insertion of identity columns (Id)
-                    context.SetAutoIncrementOnTable(luxusklasseAutoTableName, false);
-                    context.SetAutoIncrementOnTable(mittelklasseAutoTableName, false);
-                    context.SetAutoIncrementOnTable(standardAutoTableName, false);
-                    context.SetAutoIncrementOnTable(autoTableName, false);
-                    context.SetAutoIncrementOnTable(kundeTableName, false);
+                    context.SetAutoIncrementOnTable(luxuryCarTableName, false);
+                    context.SetAutoIncrementOnTable(midRangeCarTableName, false);
+                    context.SetAutoIncrementOnTable(standardCarTableName, false);
+                    context.SetAutoIncrementOnTable(carTableName, false);
+                    context.SetAutoIncrementOnTable(customerTableName, false);
                     context.SetAutoIncrementOnTable(reservationTableName, false);
                 }
             }
         }
 
-        private static List<Kunde> Kunden =>
-            new List<Kunde>
+        private static List<Customer> Customers =>
+            new List<Customer>
             {
-                new Kunde {Id = 1, Nachname = "Nass", Vorname = "Anna", Geburtsdatum = new DateTime(1981, 05, 05)},
-                new Kunde {Id = 2, Nachname = "Beil", Vorname = "Timo", Geburtsdatum = new DateTime(1980, 09, 09)},
-                new Kunde {Id = 3, Nachname = "Pfahl", Vorname = "Martha", Geburtsdatum = new DateTime(1990, 07, 03)},
-                new Kunde {Id = 4, Nachname = "Zufall", Vorname = "Rainer", Geburtsdatum = new DateTime(1954, 11, 11)},
+                new Customer {Id = 1, Lastname = "Nass", Firstname = "Anna", Birthday = new DateTime(1981, 05, 05)},
+                new Customer {Id = 2, Lastname = "Beil", Firstname = "Timo", Birthday = new DateTime(1980, 09, 09)},
+                new Customer {Id = 3, Lastname = "Pfahl", Firstname = "Martha", Birthday = new DateTime(1990, 07, 03)},
+                new Customer {Id = 4, Lastname = "Zufall", Firstname = "Rainer", Birthday = new DateTime(1954, 11, 11)},
             };
 
-        private static List<Auto> Autos =>
-            new List<Auto>
+        private static List<Car> Cars =>
+            new List<Car>
             {
-                new StandardAuto {Id = 1, Marke = "Fiat Punto", Tagestarif = 50},
-                new MittelklasseAuto {Id = 2, Marke = "VW Golf", Tagestarif = 120},
-                new LuxusklasseAuto {Id = 3, Marke = "Audi S6", Tagestarif = 180, Basistarif = 50},
+                new StandardCar {Id = 1, Brand = "Fiat Punto", DailyRate = 50},
+                new MidRangeCar {Id = 2, Brand = "VW Golf", DailyRate = 120},
+                new LuxuryCar {Id = 3, Brand = "Audi S6", DailyRate = 180, BaseRate = 50},
             };
 
-        private static List<Reservation> Reservationen =>
+        private static List<Reservation> Reservations =>
             new List<Reservation>
             {
-                new Reservation { ReservationsNr = 1, AutoId = 1, KundeId = 1, Von = new DateTime(2020, 01, 10), Bis = new DateTime(2020, 01, 20)},
-                new Reservation { ReservationsNr = 2, AutoId = 2, KundeId = 2, Von = new DateTime(2020, 01, 10), Bis = new DateTime(2020, 01, 20)},
-                new Reservation { ReservationsNr = 3, AutoId = 3, KundeId = 3, Von = new DateTime(2020, 01, 10), Bis = new DateTime(2020, 01, 20)},
+                new Reservation { ReservationNo = 1, CarId = 1, CustomerId = 1, From = new DateTime(2020, 01, 10), To = new DateTime(2020, 01, 20)},
+                new Reservation { ReservationNo = 2, CarId = 2, CustomerId = 2, From = new DateTime(2020, 01, 10), To = new DateTime(2020, 01, 20)},
+                new Reservation { ReservationNo = 3, CarId = 3, CustomerId = 3, From = new DateTime(2020, 01, 10), To = new DateTime(2020, 01, 20)},
             };
 
         private static string GetTableName<T>(this DbContext context)

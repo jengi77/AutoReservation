@@ -1,10 +1,10 @@
-﻿using AutoReservation.Common.DataTransferObjects;
+﻿using CarReservation.Common.DataTransferObjects;
 using System;
 using System.Windows.Data;
 
-namespace AutoReservation.Ui.Converters
+namespace CarReservation.Ui.Converters
 {
-    public class AutoKlasseEnumConverter : IValueConverter
+    public class CarClassEnumConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -13,7 +13,7 @@ namespace AutoReservation.Ui.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (AutoKlasse)value;
+            return (CarClass)value;
         }
     }
 }

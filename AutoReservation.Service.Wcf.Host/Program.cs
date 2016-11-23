@@ -1,16 +1,16 @@
 ﻿using System;
 using System.ServiceModel;
 
-namespace AutoReservation.Service.Wcf.Host
+namespace CarReservation.Service.Wcf.Host
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("AutoReservationService starting.");
+            Console.WriteLine("CarReservationService starting.");
             
             // Instantiate new ServiceHost 
-            ServiceHost host = new ServiceHost(typeof(AutoReservationService));
+            ServiceHost host = new ServiceHost(typeof(CarReservationService));
 
             // Open ServiceHost
             host.Open();

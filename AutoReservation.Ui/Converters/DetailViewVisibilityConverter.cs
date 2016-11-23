@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace AutoReservation.Ui.Converters
+namespace CarReservation.Ui.Converters
 {
     public class DetailViewVisibilityConverter : IValueConverter
     {

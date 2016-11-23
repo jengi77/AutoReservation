@@ -3,12 +3,12 @@
 namespace CarReservation.Common.DataTransferObjects
 {
     [DataContract]
-    public enum AutoKlasse
+    public enum CarClass
     {
         [EnumMember]
-        Luxusklasse = 0,
+        Luxury = 0,
         [EnumMember]
-        Mittelklasse = 1,
+        MidRange = 1,
         [EnumMember]
         Standard = 2
     }

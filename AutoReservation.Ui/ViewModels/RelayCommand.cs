@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace AutoReservation.Ui.ViewModels
+namespace CarReservation.Ui.ViewModels
 {
     /// <summary>
     /// A command whose sole purpose is to 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<module name="AutoReservationServiceModule">
+<module name="CarReservationServiceModule">
   <!-- Injection of NullObject as long as no concrete factory exists -->
-  <bind service="AutoReservation.Ui.Factory.IServiceFactory, AutoReservation.Ui"
-        to="AutoReservation.Ui.Factory.LocalDataAccessServiceFactory, AutoReservation.Ui"
+  <bind service="CarReservation.Ui.Factory.IServiceFactory, CarReservation.Ui"
+        to="CarReservation.Ui.Factory.LocalDataAccessServiceFactory, CarReservation.Ui"
         scope="singleton"/>
 
 

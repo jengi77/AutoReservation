@@ -8,8 +8,8 @@
     <ProjectGuid>{4E17D89D-F65A-4F89-BCEE-28171FA1A01C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoReservation.Service.Wcf.Host</RootNamespace>
-    <AssemblyName>AutoReservation.Service.Wcf.Host</AssemblyName>
+    <RootNamespace>CarReservation.Service.Wcf.Host</RootNamespace>
+    <AssemblyName>CarReservation.Service.Wcf.Host</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

@@ -7,8 +7,8 @@
     <ProjectGuid>{0BECFAB3-1408-4005-A38A-6C4284C93658}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoReservation.TestEnvironment</RootNamespace>
-    <AssemblyName>AutoReservation.TestEnvironment</AssemblyName>
+    <RootNamespace>CarReservation.TestEnvironment</RootNamespace>
+    <AssemblyName>CarReservation.TestEnvironment</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

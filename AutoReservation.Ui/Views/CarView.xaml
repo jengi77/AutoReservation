@@ -1,22 +1,22 @@
-﻿<UserControl x:Class="AutoReservation.Ui.Views.AutoView"
+﻿<UserControl x:Class="CarReservation.Ui.Views.CarView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:System="clr-namespace:System;assembly=mscorlib"
-    xmlns:Common="clr-namespace:AutoReservation.Common.DataTransferObjects;assembly=AutoReservation.Common"
-    xmlns:Converters="clr-namespace:AutoReservation.Ui.Converters">
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:common="clr-namespace:CarReservation.Common.DataTransferObjects;assembly=CarReservation.Common"
+    xmlns:converters="clr-namespace:CarReservation.Ui.Converters">
     <UserControl.Resources>
-        <CollectionViewSource x:Key="AutoKlassen">
+        <CollectionViewSource x:Key="CarClass">
             <CollectionViewSource.Source>
-                <ObjectDataProvider ObjectType="{x:Type System:Enum}" MethodName="GetNames">
+                <ObjectDataProvider ObjectType="{x:Type system:Enum}" MethodName="GetNames">
                     <ObjectDataProvider.MethodParameters>
-                        <x:Type TypeName ="Common:AutoKlasse" />
+                        <x:Type TypeName ="common:CarClass" />
                     </ObjectDataProvider.MethodParameters>
                 </ObjectDataProvider>
             </CollectionViewSource.Source>
         </CollectionViewSource>
-        <Converters:AutoKlasseEnumConverter x:Key="AutoKlasseEnumConverter" />
-        <Converters:BasistarifVisibilityConverter x:Key="BasistarifVisibilityConverter" />
-        <Converters:DetailViewVisibilityConverter x:Key="DetailViewVisibilityConverter" />
+        <converters:CarClassEnumConverter x:Key="CarClassEnumConverter" />
+        <converters:BasistarifVisibilityConverter x:Key="BasistarifVisibilityConverter" />
+        <converters:DetailViewVisibilityConverter x:Key="DetailViewVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,15 +40,15 @@
                 Auto-Liste
             </Label>
             <DataGrid Grid.Row="1"
-                      Name="dgAutos" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+                      Name="dgCars" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
                       SelectionMode="Single" IsReadOnly="True"
-                      ItemsSource="{Binding Autos}" 
-                      SelectedItem="{Binding SelectedAuto, Mode=TwoWay}">
+                      ItemsSource="{Binding Cars}" 
+                      SelectedItem="{Binding SelectedCar, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Marke" Binding="{Binding Marke}" />
-                    <DataGridTextColumn Header="Auto Klasse" Binding="{Binding AutoKlasse}" />
-                    <DataGridTextColumn Header="Tagestarif" Binding="{Binding Tagestarif}" />
-                    <DataGridTextColumn Header="Basistarif" Binding="{Binding Basistarif}" />
+                    <DataGridTextColumn Header="Brand" Binding="{Binding Brand}" />
+                    <DataGridTextColumn Header="Car Klasse" Binding="{Binding CarClass}" />
+                    <DataGridTextColumn Header="DailyRate" Binding="{Binding DailyRate}" />
+                    <DataGridTextColumn Header="BaseRate" Binding="{Binding BaseRate}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -70,7 +70,7 @@
             </ScrollViewer>
         </StackPanel>
         <!-- Details -->
-        <Grid Grid.Column="3" Visibility="{Binding SelectedAuto, Converter={StaticResource DetailViewVisibilityConverter}, Mode=TwoWay}">
+        <Grid Grid.Column="3" Visibility="{Binding SelectedCar, Converter={StaticResource DetailViewVisibilityConverter}, Mode=TwoWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="150" />
@@ -94,11 +94,11 @@
                 Auto Editieren
             </Label>
             <ComboBox Grid.Column="1" Grid.Row="1" 
-                      ItemsSource="{Binding Source={StaticResource AutoKlassen}}"
-                      SelectedIndex="{Binding SelectedAuto.AutoKlasse, Converter={StaticResource AutoKlasseEnumConverter}}"  />
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedAuto.Marke}" />
-            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedAuto.Tagestarif}" />
-            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedAuto.Basistarif}" Visibility="{Binding SelectedAuto.AutoKlasse, Converter={StaticResource BasistarifVisibilityConverter}, Mode=TwoWay}" />
+                      ItemsSource="{Binding Source={StaticResource CarClass}}"
+                      SelectedIndex="{Binding SelectedCar.CarClass, Converter={StaticResource CarClassEnumConverter}}"  />
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedCar.Brand}" />
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedCar.DailyRate}" />
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedCar.BaseRate}" Visibility="{Binding SelectedCar.CarClass, Converter={StaticResource BasistarifVisibilityConverter}, Mode=TwoWay}" />
         </Grid>
     </Grid>
 </UserControl>

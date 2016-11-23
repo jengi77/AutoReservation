@@ -1,13 +1,13 @@
-﻿using AutoReservation.Common.Interfaces;
+﻿using CarReservation.Common.Interfaces;
 using System.ServiceModel;
 
-namespace AutoReservation.Ui.Factory
+namespace CarReservation.Ui.Factory
 {
     public class RemoteDataAccessServiceFactory : IServiceFactory
     {
-        public IAutoReservationService GetService()
+        public ICarReservationService GetService()
         {
-            ChannelFactory<IAutoReservationService> channelFactory = new ChannelFactory<IAutoReservationService>("AutoReservationService");
+            ChannelFactory<ICarReservationService> channelFactory = new ChannelFactory<ICarReservationService>("CarReservationService");
             return channelFactory.CreateChannel();
         }
     }

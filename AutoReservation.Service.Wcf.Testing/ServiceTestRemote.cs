@@ -12,7 +12,7 @@ namespace CarReservation.Service.Wcf.Testing
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
-            serviceHost = new ServiceHost(typeof(AutoReservationService));
+            serviceHost = new ServiceHost(typeof(CarReservationService));
             serviceHost.Open();
         }
 
@@ -25,14 +25,14 @@ namespace CarReservation.Service.Wcf.Testing
             }
         }
 
-        private IAutoReservationService target;
-        protected override IAutoReservationService Target
+        private ICarReservationService target;
+        protected override ICarReservationService Target
         {
             get
             {
                 if (target == null)
                 {
-                    ChannelFactory<IAutoReservationService> channelFactory = new ChannelFactory<IAutoReservationService>("AutoReservationService");
+                    ChannelFactory<ICarReservationService> channelFactory = new ChannelFactory<ICarReservationService>("CarReservationService");
                     target = channelFactory.CreateChannel();
                 }
                 return target;
