@@ -80,15 +80,16 @@ namespace CarReservation.Ui.ViewModels
 
         private void SaveData()
         {
-            foreach (var Customer in Customers)
+            foreach (var customer in Customers)
             {
-                if (Customer.Id == default(int))
+                if (customer.Id == default(int))
                 {
-                    Service.InsertCustomer(Customer);
+                    Service.InsertCustomer(customer);
                 }
                 else
                 {
-                    Service.UpdateCustomer(Customer);
+                    var x = Service.UpdateCustomer(customer);
+                    x = null;
                 }
             }
             Load();

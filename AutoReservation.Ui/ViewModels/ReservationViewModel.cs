@@ -16,7 +16,7 @@ namespace CarReservation.Ui.ViewModels
             
         }
 
-        public ObservableCollection<ReservationDto> Reservationen
+        public ObservableCollection<ReservationDto> Reservations
         {
             get { return reservationen; }
         }
@@ -102,7 +102,7 @@ namespace CarReservation.Ui.ViewModels
 
         protected override void Load()
         {
-            Reservationen.Clear();
+            Reservations.Clear();
             
             Customers.Clear();
             Cars.Clear();
@@ -117,9 +117,9 @@ namespace CarReservation.Ui.ViewModels
             }
             foreach (ReservationDto reservation in Service.Reservations)
             {
-                Reservationen.Add(reservation);
+                Reservations.Add(reservation);
             }
-            SelectedReservation = Reservationen.FirstOrDefault();
+            SelectedReservation = Reservations.FirstOrDefault();
         }
 
         private bool CanLoad()
@@ -143,7 +143,7 @@ namespace CarReservation.Ui.ViewModels
 
         private void SaveData()
         {
-            foreach (var reservation in Reservationen)
+            foreach (var reservation in Reservations)
             {
                 if (reservation.ReservationNo == default(int))
                 {
@@ -164,7 +164,7 @@ namespace CarReservation.Ui.ViewModels
                 return false;
             }
 
-            return Validate(Reservationen);
+            return Validate(Reservations);
         }
 
         #endregion
@@ -183,7 +183,7 @@ namespace CarReservation.Ui.ViewModels
 
         private void New()
         {
-            Reservationen.Add(new ReservationDto
+            Reservations.Add(new ReservationDto
             {
                 From = DateTime.Today,
                 To = DateTime.Today

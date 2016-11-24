@@ -63,7 +63,7 @@ namespace CarReservation.Ui.Testing
 
             targetCommand.Execute(null);
 
-            Assert.AreEqual(3, vm.Reservationen.Count);
+            Assert.AreEqual(3, vm.Reservations.Count);
         }
     }
 }

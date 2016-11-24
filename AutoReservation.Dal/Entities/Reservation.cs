@@ -4,23 +4,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarReservation.Dal.Entities
 {
+    [Table("reservations")]
     public class Reservation
     {
-        [Key, Column("Id")]
+        [Key, Column("id")]
         public int ReservationNo { get; set; }
-        [Column("Car")]
+        [Column("car")]
         public int CarId { get; set; }
-        [ForeignKey("Id"), InverseProperty("Reservations")]
-        public Car Car { get; set; }
-        [ForeignKey("Id"), InverseProperty("Reservations")]
-        [Column("Customer")]
+        [ForeignKey("CarId"), InverseProperty("Reservations")]
+        public virtual Car Car { get; set; }
+        [Column("customer")]
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        [ForeignKey("CustomerId"), InverseProperty("Reservations")]
+        public virtual Customer Customer { get; set; }
         [DataType(DataType.Date)]
         public DateTime From { get; set; }
         [DataType(DataType.Date)]
         public DateTime To { get; set; }
-        [Required, Timestamp]
+        [Timestamp]
         public byte[] RowVersion { get; set; }
     }
 }

@@ -87,6 +87,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoReservation.Common\CarReservation.Common.csproj">
+      <Project>{22972439-3fff-41d2-b5ae-6c06abc66eb4}</Project>
+      <Name>CarReservation.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutoReservation.Dal\CarReservation.Dal.csproj">
       <Project>{AB98AC63-032F-4050-9755-1E2235E9F1DD}</Project>
       <Name>CarReservation.Dal</Name>

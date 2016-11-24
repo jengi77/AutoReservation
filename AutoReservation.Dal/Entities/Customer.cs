@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarReservation.Dal.Entities
 {
+    [Table("customers")]
     public class Customer
     {
         [Key]
@@ -16,9 +17,9 @@ namespace CarReservation.Dal.Entities
         public string Firstname { get; set; }
         [Required, DataType(DataType.DateTime)]
         public DateTime Birthday { get; set; }
-        [Required, Timestamp]
+        [Timestamp]
         public byte[] RowVersion { get; set; }
-        [InverseProperty("Customers")]
+        [InverseProperty("Customer")]
         public ICollection<Reservation> Reservations { get; set; }
     }
 }

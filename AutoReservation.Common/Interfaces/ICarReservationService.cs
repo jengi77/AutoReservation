@@ -20,6 +20,5 @@ namespace CarReservation.Common.Interfaces
         void DeleteCar(CarDto car);
         void DeleteCustomer(CustomerDto customer);
         void DeleteReservation(ReservationDto reservation);
-
     }
 }

@@ -27,12 +27,12 @@
                 Reservations-Liste
             </Label>
             <DataGrid Grid.Row="1"
-                      Name="dgReservationen" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+                      Name="dgReservations" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
                       SelectionMode="Single" IsReadOnly="True"
-                      ItemsSource="{Binding Reservationen}" 
+                      ItemsSource="{Binding Reservations}" 
                       SelectedItem="{Binding SelectedReservation, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Reservations Nr." Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Reservations Nr." Binding="{Binding ReservationNo}" />
                     <DataGridTextColumn Header="From" Binding="{Binding From, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
                     <DataGridTextColumn Header="To" Binding="{Binding To, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" />
                     <DataGridTextColumn Header="Car" Binding="{Binding Car.Brand}" />
@@ -84,9 +84,9 @@
                    FontSize="16" FontWeight="UltraBold" FontStyle="Italic">
                 Reservation Editieren
             </Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedReservation.Id}" IsReadOnly="True" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedReservation.ReservationNo}" IsReadOnly="True" />
             <DatePicker Grid.Column="1" Grid.Row="2" SelectedDate="{Binding SelectedReservation.From}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
-            <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding SelectedReservation.to}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
+            <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding SelectedReservation.To}" DisplayDateEnd="12/31/2020" DisplayDateStart="1/1/2000" />
             <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Cars}" SelectedValue="{Binding SelectedCarId}" SelectedValuePath="Id" DisplayMemberPath="Brand" />
             <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Customers}" SelectedValue="{Binding SelectedCustomerId}" SelectedValuePath="Id">
                 <ComboBox.ItemTemplate>

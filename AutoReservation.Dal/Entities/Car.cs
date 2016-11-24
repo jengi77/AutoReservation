@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarReservation.Dal.Entities
 {
+    [Table("cars")]
     public abstract class Car
     {
         [Key]
@@ -13,9 +14,9 @@ namespace CarReservation.Dal.Entities
         public string Brand { get; set; }
         [Required]
         public int DailyRate { get; set; }
-        [Required, Timestamp]
+        [Timestamp]
         public byte[] RowVersion { get; set; }
-        [InverseProperty("Cars")]
+        [InverseProperty("Car")]
         public ICollection<Reservation> Reservations { get; set; }
     }
 }

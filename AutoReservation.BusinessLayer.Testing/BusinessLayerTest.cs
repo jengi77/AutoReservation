@@ -1,4 +1,5 @@
-﻿using CarReservation.Dal.Entities;
+﻿using System;
+using CarReservation.Dal.Entities;
 using CarReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -30,19 +31,29 @@ namespace CarReservation.BusinessLayer.Testing
         [TestMethod]
         public void UpdateAutoTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            Car tempCar = Target.GetElement<Car>(c => c.Id == 1);
+            tempCar.Brand = "Test_Brand";
+            Target.SaveObject(tempCar,tempCar.RowVersion, false);
+            Assert.AreEqual(Target.GetElement<Car>(c => c.Id == 1).Brand, "Test_Brand");
         }
 
         [TestMethod]
         public void UpdateKundeTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            Customer tempCustomer = Target.GetElement<Customer>(c => c.Id == 1);
+            tempCustomer.Lastname = "Test_Lastname";
+            Target.SaveObject(tempCustomer, tempCustomer.RowVersion, false);
+            Assert.AreEqual(Target.GetElement<Customer>(c => c.Id == 1).Lastname, "Test_Lastname");
         }
 
         [TestMethod]
         public void UpdateReservationTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            DateTime date = new DateTime();
+            Reservation tempReservation = Target.GetElement<Reservation>(c => c.ReservationNo == 1);
+            tempReservation.From = date;
+            Target.SaveObject(tempReservation, tempReservation.RowVersion, false);
+            Assert.AreEqual(Target.GetElement<Reservation>(c => c.ReservationNo == 1).From, date);
         }
 
     }

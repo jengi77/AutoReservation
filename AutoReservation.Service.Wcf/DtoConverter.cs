@@ -20,17 +20,17 @@ namespace CarReservation.Service.Wcf
         {
             if (dto == null) { return null; }
 
-            Car Car = GetCarInstance(dto);
-            Car.Id = dto.Id;
-            Car.Brand = dto.Brand;
-            Car.DailyRate = dto.DailyRate;
-            Car.RowVersion = dto.RowVersion;
+            Car car = GetCarInstance(dto);
+            car.Id = dto.Id;
+            car.Brand = dto.Brand;
+            car.DailyRate = dto.DailyRate;
+            car.RowVersion = dto.RowVersion;
 
-            if (Car is LuxuryCar)
+            if (car is LuxuryCar)
             {
-                ((LuxuryCar)Car).BaseRate = dto.BaseRate;
+                ((LuxuryCar)car).BaseRate = dto.BaseRate;
             }
-            return Car;
+            return car;
         }
         public static CarDto ConvertToDto(this Car entity)
         {
@@ -110,8 +110,8 @@ namespace CarReservation.Service.Wcf
                 ReservationNo = dto.ReservationNo,
                 From = dto.From,
                 To = dto.To,
-                Car = ConvertToEntity(dto.Car),
-                Customer = ConvertToEntity(dto.Customer),
+                CarId = dto.Car.Id,
+                CustomerId = dto.Customer.Id,
                 RowVersion = dto.RowVersion
             };
 

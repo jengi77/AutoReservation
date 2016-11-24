@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using System.Linq;
+using CarReservation.BusinessLayer;
 using CarReservation.Common.DataTransferObjects;
 using CarReservation.Common.Interfaces;
+using CarReservation.Dal;
+using CarReservation.Dal.Entities;
 
 namespace CarReservation.Service.Wcf
 {
     public class CarReservationService : ICarReservationService
     {
+        private readonly CarReservationBusinessComponent _businessComponent = new CarReservationBusinessComponent();
         public List<CarDto> Cars
         {
             get
             {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
+                WriteActualMethod();
+                return _businessComponent.GetAll<Car>().ConvertToDtos();
             }
         }
 
@@ -25,91 +27,95 @@ namespace CarReservation.Service.Wcf
         {
             get
             {
-                throw new NotImplementedException();
+                WriteActualMethod();
+                return _businessComponent.GetAll<Customer>().ConvertToDtos();
             }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        } 
 
         public List<ReservationDto> Reservations
         {
             get
             {
-                throw new NotImplementedException();
+                WriteActualMethod();
+                return _businessComponent.GetAllReservation().ConvertToDtos();
             }
+        }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+        public void DeleteCar(CarDto car)
+        {
+            WriteActualMethod();
+            _businessComponent.DeleteObject(car.ConvertToEntity());
+        }
+
+        public void DeleteCustomer(CustomerDto customer)
+        {
+            WriteActualMethod();
+            _businessComponent.DeleteObject(customer.ConvertToEntity());
+        }
+
+        public void DeleteReservation(ReservationDto reservation)
+        {
+            WriteActualMethod();
+            _businessComponent.DeleteObject(reservation.ConvertToEntity());
+        }
+
+        public CarDto GetCarById(int id)
+        {
+            WriteActualMethod();
+            return _businessComponent.GetElement<Car>(c  => c.Id == id).ConvertToDto();
+        }
+
+        public CustomerDto GetCustomerById(int id)
+        {
+            WriteActualMethod();
+            return _businessComponent.GetElement<Customer>(c => c.Id == id).ConvertToDto();
+        }
+
+        public ReservationDto GetReservationByNr(int reservationNo)
+        {
+            WriteActualMethod();
+            return _businessComponent.GetElement<Reservation>(c => c.ReservationNo == reservationNo).ConvertToDto();
+        }
+
+        public CarDto InsertCar(CarDto car)
+        {
+            WriteActualMethod();
+            return _businessComponent.SaveObject(car.ConvertToEntity(),car.Id, true).ConvertToDto();
+        }
+
+        public CustomerDto InsertCustomer(CustomerDto customer)
+        {
+            WriteActualMethod();
+            return _businessComponent.SaveObject(customer.ConvertToEntity(), customer.Id, true).ConvertToDto();
+        }
+
+        public ReservationDto InsertReservation(ReservationDto reservation)
+        {
+            WriteActualMethod();
+            return _businessComponent.SaveObject(reservation.ConvertToEntity(),reservation.ReservationNo, true).ConvertToDto();
+        }
+
+        public CarDto UpdateCar(CarDto car)
+        {
+            WriteActualMethod();
+            return _businessComponent.SaveObject(car.ConvertToEntity(), car.Id, false).ConvertToDto();
+        }
+
+        public CustomerDto UpdateCustomer(CustomerDto customer)
+        {
+            WriteActualMethod();
+            return _businessComponent.SaveObject(customer.ConvertToEntity(), customer.Id, false).ConvertToDto();
+        }
+
+        public ReservationDto UpdateReservation(ReservationDto reservation)
+        {
+            WriteActualMethod();
+            return _businessComponent.SaveObject(reservation.ConvertToEntity(), reservation.ReservationNo, false).ConvertToDto();
         }
 
         private static void WriteActualMethod()
         {
             Console.WriteLine($"Calling: {new StackTrace().GetFrame(1).GetMethod().Name}");
-        }
-
-        public void DeleteCar(CarDto car)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteCustomer(CustomerDto customer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteReservation(ReservationDto reservation)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CarDto GetCarById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CustomerDto GetCustomerById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ReservationDto GetReservationByNr(int reservationsNr)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CarDto InsertCar(CarDto car)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CustomerDto InsertCustomer(CustomerDto customer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ReservationDto InsertReservation(ReservationDto reservation)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CarDto UpdateCar(CarDto car)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CustomerDto UpdateCustomer(CustomerDto customer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ReservationDto UpdateReservation(ReservationDto reservation)
-        {
-            throw new NotImplementedException();
         }
     }
 }

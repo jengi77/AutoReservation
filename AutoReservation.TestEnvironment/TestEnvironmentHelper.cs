@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace CarReservation.TestEnvironment
@@ -25,6 +26,7 @@ namespace CarReservation.TestEnvironment
 
                 try
                 {
+                    context.Database.Log = Console.Write;
                     // Delete all records from tables
                     //      > Cleanup for specific subtypes necessary when not using table per hierarchy (TPH)
                     //        since entities will be stored in different tables.

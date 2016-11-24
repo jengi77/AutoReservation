@@ -85,7 +85,7 @@ namespace CarReservation.Ui.ViewModels
                 }
                 else
                 {
-                    Service.UpdateCar(car);
+                   Service.UpdateCar(car);
                 }
             }
             Load();

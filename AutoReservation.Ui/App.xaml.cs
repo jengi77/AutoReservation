@@ -27,7 +27,7 @@ namespace CarReservation.Ui
         private IKernel LoadNinject()
         {
             var kernel = new StandardKernel(new CarReservationModule());
-            kernel.Load("CarReservation.Ui.Factory.NinjectBindings.xml");
+            kernel.Load("AutoReservation.Ui.Factory.NinjectBindings.xml");
             return kernel;
         }
 
