@@ -33,7 +33,7 @@ namespace CarReservation.BusinessLayer.Testing
         {
             Car tempCar = Target.GetElement<Car>(c => c.Id == 1);
             tempCar.Brand = "Test_Brand";
-            Target.SaveObject(tempCar,tempCar.RowVersion, false);
+            Target.SaveObject(tempCar,tempCar.Id, false);
             Assert.AreEqual(Target.GetElement<Car>(c => c.Id == 1).Brand, "Test_Brand");
         }
 
@@ -42,18 +42,18 @@ namespace CarReservation.BusinessLayer.Testing
         {
             Customer tempCustomer = Target.GetElement<Customer>(c => c.Id == 1);
             tempCustomer.Lastname = "Test_Lastname";
-            Target.SaveObject(tempCustomer, tempCustomer.RowVersion, false);
+            Target.SaveObject(tempCustomer, tempCustomer.Id, false);
             Assert.AreEqual(Target.GetElement<Customer>(c => c.Id == 1).Lastname, "Test_Lastname");
         }
 
         [TestMethod]
         public void UpdateReservationTest()
         {
-            DateTime date = new DateTime();
-            Reservation tempReservation = Target.GetElement<Reservation>(c => c.ReservationNo == 1);
+            DateTime date = DateTime.Now;
+            Reservation tempReservation = Target.GetReservationById(1);
             tempReservation.From = date;
-            Target.SaveObject(tempReservation, tempReservation.RowVersion, false);
-            Assert.AreEqual(Target.GetElement<Reservation>(c => c.ReservationNo == 1).From, date);
+            Target.SaveObject(tempReservation, tempReservation.ReservationNo, false);
+            Assert.AreEqual(Target.GetReservationById(1).From.ToString(), date.ToString());
         }
 
     }

@@ -74,7 +74,7 @@ namespace CarReservation.Service.Wcf
         public ReservationDto GetReservationByNr(int reservationNo)
         {
             WriteActualMethod();
-            return _businessComponent.GetElement<Reservation>(c => c.ReservationNo == reservationNo).ConvertToDto();
+            return _businessComponent.GetReservationById(reservationNo).ConvertToDto();
         }
 
         public CarDto InsertCar(CarDto car)

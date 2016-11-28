@@ -44,6 +44,14 @@ namespace CarReservation.BusinessLayer
             }
         }
 
+        public Reservation GetReservationById(int id)
+        {
+            using (CarReservationContext context = new CarReservationContext())
+            {
+                return context.Reservations.Include(r => r.Customer).Include(r => r.Car).SingleOrDefault(r => r.ReservationNo == id );
+            }
+        }
+
         public T SaveObject<T>(T obj,int id, bool isNew) where T: class
         {
             using (CarReservationContext context = new CarReservationContext())
@@ -52,11 +60,22 @@ namespace CarReservation.BusinessLayer
                 try
                 {
                     var entity = context.Set<T>().Find(id);
+                    int indexEntity = 0;
+                    int indexObj = 0;
+                    
                     if (entity == null)
                         context.Entry<T>(obj).State = EntityState.Added;
-                    else if (entity.GetType() == obj.GetType())
+                    if (entity != null && entity.GetType().Name.IndexOf('_') > 0)
+                        indexEntity = entity.GetType().Name.IndexOf('_');
+                    if (obj.GetType().Name.IndexOf('_') > 0)
+                        indexObj = obj.GetType().Name.IndexOf('_');
+                    if (entity != null && entity.GetType() == obj.GetType())
                         context.Entry<T>(entity).CurrentValues.SetValues(obj);
-                    else
+                    else if (entity != null && indexEntity != 0 && entity.GetType().Name.Substring(0, indexEntity) == obj.GetType().Name)
+                        context.Entry<T>(entity).CurrentValues.SetValues(obj);
+                    else if (entity != null && indexEntity != 0 && indexObj != 0 && entity.GetType().Name.Substring(0, indexEntity) ==  obj.GetType().Name.Substring(0, indexObj))
+                        context.Entry<T>(entity).CurrentValues.SetValues(obj);
+                    else if (context.Entry<T>(obj).State != EntityState.Added)
                     {
                         DeleteObject(obj);
                         SaveObject<T>(obj, 0, isNew);
@@ -67,6 +86,9 @@ namespace CarReservation.BusinessLayer
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
+                    var entry = ex.Entries.SingleOrDefault();
+                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                    context.SaveChanges();
                     throw CreateLocalOptimisticConcurrencyException(context, obj);
                 }
             }

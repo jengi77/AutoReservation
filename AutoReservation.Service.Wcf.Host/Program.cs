@@ -15,7 +15,7 @@ namespace CarReservation.Service.Wcf.Host
             // Open ServiceHost
             host.Open();
 
-            Console.WriteLine("AutoReservationService started.");
+            Console.WriteLine("CarReservationService started.");
             Console.WriteLine();
             Console.WriteLine("Press Return to stop the Service.");
 
