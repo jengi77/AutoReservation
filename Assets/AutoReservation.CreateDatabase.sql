@@ -50,8 +50,8 @@ IF EXISTS(SELECT name FROM sys.tables WHERE name = 'reservations')
 DROP TABLE [dbo].[reservations]
 CREATE TABLE [dbo].[reservations] (
     [Id]         INT      IDENTITY (1, 1) NOT NULL,
-    [CarId]     INT      NOT NULL,
-    [CustomerId]    INT      NOT NULL,
+    [Car]     INT      NOT NULL,
+    [Customer]    INT      NOT NULL,
     [From]        DATETIME NOT NULL,
     [To]        DATETIME NOT NULL,
 	[RowVersion] TIMESTAMP
@@ -103,12 +103,12 @@ ALTER TABLE [dbo].[reservations]
 PRINT N'Creating dbo.FK_Reservation_Car...';
 
 ALTER TABLE [dbo].[reservations]
-    ADD CONSTRAINT [FK_Reservation_Car] FOREIGN KEY ([CarId]) REFERENCES [dbo].[cars] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+    ADD CONSTRAINT [FK_Reservation_Car] FOREIGN KEY ([Car]) REFERENCES [dbo].[cars] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 PRINT N'Creating dbo.FK_Reservation_Customer...';
 
 ALTER TABLE [dbo].[reservations]
-    ADD CONSTRAINT [FK_Reservation_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[customers] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
+    ADD CONSTRAINT [FK_Reservation_Customer] FOREIGN KEY ([Customer]) REFERENCES [dbo].[customers] ([Id]) ON DELETE CASCADE ON UPDATE NO ACTION;
 	
 PRINT N'Generating Test Data'
 
@@ -129,7 +129,7 @@ INSERT INTO customers (Id, Lastname, Firstname, Birthday)
 SET IDENTITY_INSERT customers OFF
 	
 SET IDENTITY_INSERT reservations ON
-INSERT INTO reservations (Id, CarId, CustomerId, "From", "To")				
+INSERT INTO reservations (Id, Car, Customer, "From", "To")				
    SELECT 1, 1, 1, '2020-01-10 00:00:00', '2020-01-20 00:00:00' UNION				
    SELECT 2, 2, 2, '2020-01-10 00:00:00', '2020-01-20 00:00:00' UNION				
    SELECT 3, 3, 3, '2020-01-10 00:00:00', '2020-01-20 00:00:00'				
