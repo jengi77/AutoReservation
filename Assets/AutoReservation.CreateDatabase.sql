@@ -119,6 +119,7 @@ INSERT INTO cars (Id, Brand, CarClass, DailyRate, BaseRate)
     SELECT 3, 'Audi S6', 0, 180, 50
 SET IDENTITY_INSERT cars OFF
 
+
 SET IDENTITY_INSERT customers ON
 INSERT INTO customers (Id, Lastname, Firstname, Birthday)
     SELECT 1, 'Nass', 'Anna', '1961-05-05 00:00:00' UNION

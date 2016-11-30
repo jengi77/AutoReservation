@@ -48,18 +48,6 @@ namespace CarReservation.Dal
             modelBuilder.Entity<Car>()
                         .Map<MidRangeCar>(m => m.Requires("CarClass").HasValue(1));
             base.OnModelCreating(modelBuilder);
-            /*modelBuilder.Entity<Car>()
-                        .Map<LuxuryCar>(m => m.Requires("CarClass").HasValue(0));
-
-            modelBuilder.Entity<Car>()
-                        .Map<StandardCar>(m => m.Requires("CarClass").HasValue(2));
-
-            modelBuilder.Entity<Car>()
-                        .Map<MidRangeCar>(m => m.Requires("CarClass").HasValue(1));*/
-            // Set up hierarchical mapping in fluent API
-            //      Remarks:
-            //      This could not be done using attributes on business entities
-            //      since the discriminator (AutoKlasse) must not be part of the entity.
         }
     }
 }
