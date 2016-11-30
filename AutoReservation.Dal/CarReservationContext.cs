@@ -39,6 +39,14 @@ namespace CarReservation.Dal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Car>()
+                        .Map<LuxuryCar>(m => m.Requires("CarClass").HasValue(0));
+
+            modelBuilder.Entity<Car>()
+                        .Map<StandardCar>(m => m.Requires("CarClass").HasValue(2));
+
+            modelBuilder.Entity<Car>()
+                        .Map<MidRangeCar>(m => m.Requires("CarClass").HasValue(1));
             base.OnModelCreating(modelBuilder);
             /*modelBuilder.Entity<Car>()
                         .Map<LuxuryCar>(m => m.Requires("CarClass").HasValue(0));
@@ -55,4 +63,5 @@ namespace CarReservation.Dal
         }
     }
 }
+
 

@@ -71,6 +71,7 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +93,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoReservation.BusinessLayer\CarReservation.BusinessLayer.csproj">
+      <Project>{1f53d0ef-0521-4155-835c-c2a04d9fe5de}</Project>
+      <Name>CarReservation.BusinessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutoReservation.Common\CarReservation.Common.csproj">
       <Project>{22972439-3FFF-41D2-B5AE-6C06ABC66EB4}</Project>
       <Name>CarReservation.Common</Name>

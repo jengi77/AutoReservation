@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using CarReservation.BusinessLayer;
 using CarReservation.Common.DataTransferObjects;
 using CarReservation.Common.Interfaces;
@@ -98,20 +99,43 @@ namespace CarReservation.Service.Wcf
         public CarDto UpdateCar(CarDto car)
         {
             WriteActualMethod();
-            return _businessComponent.SaveObject(car.ConvertToEntity(), car.Id, false).ConvertToDto();
+            try
+            {
+                return _businessComponent.SaveObject(car.ConvertToEntity(), car.Id, false).ConvertToDto();
+            }
+
+            catch (LocalOptimisticConcurrencyException<Car> ex)
+            {
+                throw new FaultException("Update Concurrency Error");
+            }
         }
 
         public CustomerDto UpdateCustomer(CustomerDto customer)
         {
             WriteActualMethod();
-            return _businessComponent.SaveObject(customer.ConvertToEntity(), customer.Id, false).ConvertToDto();
+            try
+            {
+                return _businessComponent.SaveObject(customer.ConvertToEntity(), customer.Id, false).ConvertToDto();
+            }
+            catch (LocalOptimisticConcurrencyException<Customer> ex)
+            {
+                throw new FaultException("Update Concurrency Error");
+            }
         }
 
         public ReservationDto UpdateReservation(ReservationDto reservation)
         {
             WriteActualMethod();
-            return _businessComponent.SaveObject(reservation.ConvertToEntity(), reservation.ReservationNo, false).ConvertToDto();
-        }
+            try
+            {
+                return _businessComponent.SaveObject(reservation.ConvertToEntity(), reservation.ReservationNo, false).ConvertToDto();
+            }
+
+            catch (LocalOptimisticConcurrencyException<Reservation> ex)
+            {
+                throw new FaultException("Update Concurrency Error");
+            }
+}
 
         private static void WriteActualMethod()
         {

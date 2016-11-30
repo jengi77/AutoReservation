@@ -5,6 +5,7 @@ using CarReservation.Dal.Entities;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using CarReservation.Common.DataTransferObjects;
 
 namespace CarReservation.BusinessLayer
 {
@@ -59,36 +60,20 @@ namespace CarReservation.BusinessLayer
                 context.Database.Log = Console.Write;
                 try
                 {
-                    var entity = context.Set<T>().Find(id);
-                    int indexEntity = 0;
-                    int indexObj = 0;
-                    
-                    if (entity == null)
-                        context.Entry<T>(obj).State = EntityState.Added;
-                    if (entity != null && entity.GetType().Name.IndexOf('_') > 0)
-                        indexEntity = entity.GetType().Name.IndexOf('_');
-                    if (obj.GetType().Name.IndexOf('_') > 0)
-                        indexObj = obj.GetType().Name.IndexOf('_');
-                    if (entity != null && entity.GetType() == obj.GetType())
-                        context.Entry<T>(entity).CurrentValues.SetValues(obj);
-                    else if (entity != null && indexEntity != 0 && entity.GetType().Name.Substring(0, indexEntity) == obj.GetType().Name)
-                        context.Entry<T>(entity).CurrentValues.SetValues(obj);
-                    else if (entity != null && indexEntity != 0 && indexObj != 0 && entity.GetType().Name.Substring(0, indexEntity) ==  obj.GetType().Name.Substring(0, indexObj))
-                        context.Entry<T>(entity).CurrentValues.SetValues(obj);
-                    else if (context.Entry<T>(obj).State != EntityState.Added)
-                    {
-                        DeleteObject(obj);
-                        SaveObject<T>(obj, 0, isNew);
-                    }
-
+                    context.Entry<T>(obj).State = isNew ? EntityState.Added : EntityState.Modified;
                     context.SaveChanges();
+                    if (!isNew && typeof(T).Name == "Car")
+                    {
+                        context.Database.ExecuteSqlCommand("UPDATE cars SET CarClass = {0} WHERE Id = {1}", 
+                                        obj.GetType().Name == "StandardCar" ? 2: (obj.GetType().Name == "MidRangeCar"? 1 : 0) , id);
+                        context.SaveChanges();
+                    }
+                    
                     return obj;
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    var entry = ex.Entries.SingleOrDefault();
-                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                    context.SaveChanges();
+                    ex.Entries.SingleOrDefault().Reload();
                     throw CreateLocalOptimisticConcurrencyException(context, obj);
                 }
             }

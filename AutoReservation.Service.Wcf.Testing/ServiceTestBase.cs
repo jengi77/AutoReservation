@@ -3,7 +3,6 @@ using CarReservation.Common.Interfaces;
 using CarReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace CarReservation.Service.Wcf.Testing
@@ -195,40 +194,43 @@ namespace CarReservation.Service.Wcf.Testing
         #region Update with optimistic concurrency violation
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
+        //[ExpectedException(typeof(LocalOptimisticConcurrencyException<CarDto>))]
         public void UpdateCarWithOptimisticConcurrencyTest()
         {
             CarDto firstCar = Target.GetCarById(1);
             firstCar.Brand = "Guguland";
             CarDto secondCar = Target.GetCarById(1);
             secondCar.BaseRate = 40;
-            Target.UpdateCar(firstCar);
             Target.UpdateCar(secondCar);
-            Assert.Fail("DbOptimisticConcurrencyException");
+            Target.UpdateCar(firstCar);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
+        //[ExpectedException(typeof(LocalOptimisticConcurrencyException<CustomerDto>))]
         public void UpdateCustomerWithOptimisticConcurrencyTest()
         {
             CustomerDto firstCustomer = Target.GetCustomerById(1);
             firstCustomer.Firstname = "Guguland";
             CustomerDto secondCustomer = Target.GetCustomerById(1);
             secondCustomer.Lastname = "TEST2";
-            Target.UpdateCustomer(firstCustomer);
             Target.UpdateCustomer(secondCustomer);
-            
-            Assert.Fail("DbOptimisticConcurrencyException");
+            Target.UpdateCustomer(firstCustomer);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
+        //[ExpectedException(typeof(LocalOptimisticConcurrencyException<ReservationDto>))]
         public void UpdateReservationWithOptimisticConcurrencyTest()
         {
+
             ReservationDto firstReservation = Target.GetReservationByNr(1);
             firstReservation.From = DateTime.Now;
             ReservationDto secondReservation = Target.GetReservationByNr(1);
             secondReservation.To = DateTime.Now;
-            Target.UpdateReservation(firstReservation);
             Target.UpdateReservation(secondReservation);
-            Assert.Fail("DbOptimisticConcurrencyException");
+            Target.UpdateReservation(firstReservation);
         }
 
         #endregion
